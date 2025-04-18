@@ -18,13 +18,13 @@ class DeepCopierTest {
 
     @Test
     void testManClass() {
-        List<String> books = List.of(
+        var books = List.of(
                 "Pride and Prejudice ",
                 "To Kill a Mockingbird",
                 "The Great Gatsby");
 
-        Man expected = new Man("Alex", 40, books);
-        Man actual = (Man) copier.createCopy(expected);
+        var expected = new Man("Alex", 40, books);
+        var actual = (Man) copier.createCopy(expected);
 
         assertNotSame(expected, actual);
         assertEquals(expected, actual);

@@ -32,14 +32,14 @@ public class DeepCopier {
     );
 
     public static void main(String[] args) {
-        List<String> books = List.of(
+        var books = List.of(
                 "Pride and Prejudice ",
                 "To Kill a Mockingbird",
                 "The Great Gatsby");
 
-        DeepCopier copier = new DeepCopier();
-        Man original = new Man("Alex", 40, books);
-        Man copy = (Man) copier.createCopy(original);
+        var copier = new DeepCopier();
+        var original = new Man("Alex", 40, books);
+        var copy = (Man) copier.createCopy(original);
 
         System.out.printf("The original object: %s%n", original);
         System.out.printf("The copy: %s%n", copy);
@@ -78,12 +78,12 @@ public class DeepCopier {
                 }
 
                 if (field.get(original) instanceof Collection<?> originalCollection) {
-                    Collection<Object> copiedCollection = copyCollection(originalCollection);
+                    var copiedCollection = copyCollection(originalCollection);
                     field.set(copy, copiedCollection);
                     continue;
                 }
 
-                Object childObj = field.get(original);
+                var childObj = field.get(original);
 
                 if (childObj == original) {
                     field.set(copy, copy);
@@ -100,7 +100,7 @@ public class DeepCopier {
 
     private Collection<Object> copyCollection(Collection<?> original) {
         // TODO: the default implementations could be defined in a flexible way with properties/map and enum
-        Collection<Object> copy = switch (original) {
+        var copy = switch (original) {
             case Set<?> objects -> new HashSet<>();
             case Queue<?> objects -> new LinkedList<>();
             default -> new ArrayList<>();
