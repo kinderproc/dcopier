@@ -31,6 +31,20 @@ public class DeepCopier {
             Character.class
     );
 
+    public static void main(String[] args) {
+        List<String> books = List.of(
+                "Pride and Prejudice ",
+                "To Kill a Mockingbird",
+                "The Great Gatsby");
+
+        DeepCopier copier = new DeepCopier();
+        Man original = new Man("Alex", 40, books);
+        Man copy = (Man) copier.createCopy(original);
+
+        System.out.printf("The original object: %s%n", original);
+        System.out.printf("The copy: %s%n", copy);
+    }
+
     public Object createCopy(Object original) {
 
         if (original == null) return null;
